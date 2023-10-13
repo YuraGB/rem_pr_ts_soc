@@ -8,12 +8,19 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { NextUIProvider } from "@nextui-org/react";
+import stylesheet from "./tailwind.css";
+import type { ReactElement } from "react";
+import { useEffect } from "react";
 
 export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  ...(cssBundleHref
+    ? [{ rel: "stylesheet", href: cssBundleHref }]
+    : [{ rel: "stylesheet", href: stylesheet }]),
 ];
 
-export default function App() {
+export default function App(): ReactElement {
+  useEffect(() => console.log("App compoennt"), []);
   return (
     <html lang="en">
       <head>
@@ -22,11 +29,13 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+      <body className={"min-h-screen"}>
+        <NextUIProvider>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </NextUIProvider>
       </body>
     </html>
   );
