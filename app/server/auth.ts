@@ -19,15 +19,18 @@ const authenticator = new Authenticator<User>(sessionStorage);
 const formStrategy = new FormStrategy(async ({ form }) => {
   const email = form.get("email") as string;
   const password = form.get("password") as string;
-
   if (!email) {
     console.log("the email is missing");
     throw new AuthorizationError("the email is missing");
   }
-
-  const user = await prisma.user.findUnique({
-    where: { email },
-  });
+  let user = null;
+  try {
+    user = await prisma.user.findUnique({
+      where: { email },
+    });
+  } catch (e) {
+    return user;
+  }
 
   if (!user) {
     console.log("there is no user with such email", "auth server");
@@ -41,9 +44,11 @@ const formStrategy = new FormStrategy(async ({ form }) => {
     throw new AuthorizationError("the password is wrong");
   }
 
+  console.log("USer");
   return user;
 });
 
+//@ts-ignore
 authenticator.use(formStrategy, "form");
 
 export { authenticator };

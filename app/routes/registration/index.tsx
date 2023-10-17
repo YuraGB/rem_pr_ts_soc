@@ -66,6 +66,7 @@ export default function Registration(): ReactElement {
 }
 
 export const action: ActionFunction = actionHandler;
+
 export const loader: LoaderFunction = async ({ request }) => {
   return await authenticator.isAuthenticated(request, {
     successRedirect: "/",

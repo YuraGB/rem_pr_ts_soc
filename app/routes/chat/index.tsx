@@ -16,7 +16,3 @@ export default function Chat(): ReactElement {
     </DefaultLayout>
   );
 }
-
-export const action: ActionFunction = () => {
-  return "";
-};

@@ -1,15 +1,25 @@
 import type {
   ActionFunction,
   LoaderFunction,
+  LoaderFunctionArgs,
   MetaFunction,
 } from "@remix-run/node";
 import type { ReactElement } from "react";
 import DefaultLayout from "~/hoc/layouts/default";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
-import { Form, Link, useActionData } from "@remix-run/react";
+import {
+  Form,
+  isRouteErrorResponse,
+  Link,
+  useActionData,
+  useLoaderData,
+  useRouteError,
+} from "@remix-run/react";
 import { authenticator } from "~/server/auth";
 import { loginActionHndler } from "~/routes/login/actionHandler";
+import { json, redirect } from "@remix-run/node";
+import { sessionStorage } from "~/server/session";
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,7 +29,9 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Login(): ReactElement {
-  const data = useActionData<typeof action>();
+  const data = useLoaderData<typeof loader>();
+  const dataAction = useActionData<typeof action>();
+  console.log(data, dataAction);
   return (
     <DefaultLayout>
       <article
@@ -29,9 +41,7 @@ export default function Login(): ReactElement {
       >
         <section className={"p-4 w-full flex flex-col"}>
           <h4 className={"mb-2"}>Login form</h4>
-          {data ? (
-            <p className={"w-full text-red-700"}>{data as string}</p>
-          ) : null}
+
           <Form className={"flex flex-col"} method={"post"}>
             <Input
               isRequired
@@ -71,8 +81,13 @@ export default function Login(): ReactElement {
 
 export const action: ActionFunction = loginActionHndler;
 
-export const loader: LoaderFunction = async ({ request }) => {
-  return await authenticator.isAuthenticated(request, {
-    successRedirect: "/login",
-  });
-};
+export async function loader({ request }: LoaderFunctionArgs) {
+  const user = await authenticator.isAuthenticated(request);
+  if (user) {
+    return redirect("/chat");
+  }
+
+  let session = await sessionStorage.getSession(request.headers.get("cookie"));
+  let error = session.get(authenticator.sessionErrorKey);
+  return json({ error });
+}
