@@ -1,14 +1,12 @@
 import Navigation from "~/components/navigation/navigation";
 import Footer from "~/components/footer/footer";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
 }
 
-export default function DefaultLayout({
-  children,
-}: Partial<Props>): ReactElement {
+export default function DefaultLayout({ children }: Partial<Props>): ReactNode {
   return (
     <div
       className={

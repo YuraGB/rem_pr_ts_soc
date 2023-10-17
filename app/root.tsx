@@ -20,7 +20,6 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App(): ReactElement {
-  useEffect(() => console.log("App compoennt"), []);
   return (
     <html lang="en">
       <head>
@@ -40,3 +39,5 @@ export default function App(): ReactElement {
     </html>
   );
 }
+
+
