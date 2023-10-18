@@ -7,11 +7,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import { NextUIProvider } from "@nextui-org/react";
 import stylesheet from "./tailwind.css";
 import type { ReactElement } from "react";
-import { useEffect } from "react";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { authenticator } from "~/server/auth";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref
@@ -20,6 +22,7 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App(): ReactElement {
+  const user = useLoaderData();
   return (
     <html lang="en">
       <head>
@@ -30,7 +33,7 @@ export default function App(): ReactElement {
       </head>
       <body className={"min-h-screen"}>
         <NextUIProvider>
-          <Outlet />
+          <Outlet context={user} />
           <ScrollRestoration />
           <Scripts />
           <LiveReload />
@@ -40,4 +43,7 @@ export default function App(): ReactElement {
   );
 }
 
-
+export async function loader({ request }: LoaderFunctionArgs) {
+  const user = await authenticator.isAuthenticated(request);
+  return json(user);
+}

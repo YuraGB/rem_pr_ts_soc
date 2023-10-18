@@ -31,7 +31,6 @@ export const meta: MetaFunction = () => {
 export default function Login(): ReactElement {
   const data = useLoaderData<typeof loader>();
   const dataAction = useActionData<typeof action>();
-  console.log(data, dataAction);
   return (
     <DefaultLayout>
       <article

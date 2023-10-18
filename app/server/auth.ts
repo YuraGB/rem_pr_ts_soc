@@ -14,7 +14,9 @@ if (!sessionSecret) {
 
 // Create an instance of the authenticator, pass a generic with what
 // strategies will return and will store in the session
-const authenticator = new Authenticator<User>(sessionStorage);
+const authenticator: Authenticator<User> = new Authenticator<User>(
+  sessionStorage
+);
 
 const formStrategy = new FormStrategy(async ({ form }) => {
   const email = form.get("email") as string;
@@ -44,7 +46,6 @@ const formStrategy = new FormStrategy(async ({ form }) => {
     throw new AuthorizationError("the password is wrong");
   }
 
-  console.log("USer");
   return user;
 });
 

@@ -1,4 +1,4 @@
-import { NavLink } from "@remix-run/react";
+import { NavLink, useOutletContext } from "@remix-run/react";
 import type { ReactElement } from "react";
 import {
   Image,
@@ -9,22 +9,10 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import Logo from "./assets/2275491.png";
-
-type getStylesFuntion =
-  | string
-  | ((props: { isActive: boolean; isPending: boolean }) => string | undefined)
-  | undefined;
+import { useNavigation } from "~/components/navigation/useNavigation";
 
 export default function Navigation(): ReactElement {
-  const getStyles: getStylesFuntion = ({ isActive, isPending }): string => {
-    let linkStyles: string =
-      "p-2 bg-white rounded-sm hover:shadow-md mx-2 shadow-lg";
-    if (isActive) {
-      return (linkStyles += " decoration-solid underline shadow-md ");
-    }
-
-    return linkStyles;
-  };
+  const { isUser, getStyles } = useNavigation();
   return (
     <header className={"w-full p-4"}>
       <Navbar className={"w-full"} maxWidth={"full"}>
@@ -52,16 +40,30 @@ export default function Navigation(): ReactElement {
               chat
             </NavLink>
           </NavbarItem>
-          <NavbarItem>
-            <NavLink to="/login" prefetch="intent" className={getStyles}>
-              login
-            </NavLink>
-          </NavbarItem>
-          <NavbarItem>
-            <NavLink to="/registration" prefetch="intent" className={getStyles}>
-              registration
-            </NavLink>
-          </NavbarItem>
+          {!isUser ? (
+            <>
+              <NavbarItem>
+                <NavLink to="/login" prefetch="intent" className={getStyles}>
+                  login
+                </NavLink>
+              </NavbarItem>
+              <NavbarItem>
+                <NavLink
+                  to="/registration"
+                  prefetch="intent"
+                  className={getStyles}
+                >
+                  registration
+                </NavLink>
+              </NavbarItem>
+            </>
+          ) : (
+            <NavbarItem>
+              <NavLink prefetch="none" className={getStyles} to={"/logout"}>
+                logout
+              </NavLink>
+            </NavbarItem>
+          )}
         </NavbarContent>
       </Navbar>
     </header>
