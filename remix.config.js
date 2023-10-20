@@ -6,4 +6,8 @@ export default {
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
   // serverBuildPath: "build/index.js",
+  // devServerPort: 8080,
+  // dev: {
+  //   port: 8080,
+  // },
 };

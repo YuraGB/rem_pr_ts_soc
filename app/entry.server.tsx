@@ -57,10 +57,6 @@ function handleBotRequest(
           const stream = createReadableStreamFromReadable(body);
 
           responseHeaders.set("Content-Type", "text/html");
-          // responseHeaders.set(
-          //   "Cache-Control",
-          //   "public, max-age=30, s-maxage=86400"
-          // );
 
           resolve(
             new Response(stream, {
@@ -111,6 +107,8 @@ function handleBrowserRequest(
           const stream = createReadableStreamFromReadable(body);
 
           responseHeaders.set("Content-Type", "text/html");
+          responseHeaders.set("Access-Control-Allow-Origin", "*");
+          responseHeaders.set("X-Powered-By", "Hugs");
 
           resolve(
             new Response(stream, {

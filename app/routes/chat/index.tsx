@@ -1,6 +1,9 @@
-import type { ActionFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import type { ReactElement } from "react";
 import DefaultLayout from "~/hoc/layouts/default";
+import { useSocket } from "~/components/socetIo/useSocket";
+import { wsContext } from "~/components/socetIo/socet.context";
+import Chatroom from "~/components/chatRoom/chatroom";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,9 +13,12 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Chat(): ReactElement {
+  const socket = useSocket();
   return (
     <DefaultLayout>
-      <h1>Welcome to Chat</h1>
+      <wsContext.Provider value={socket}>
+        <Chatroom />
+      </wsContext.Provider>
     </DefaultLayout>
   );
 }
