@@ -5,15 +5,11 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-<<<<<<< Updated upstream
-=======
     "moduleResolution": "node",
->>>>>>> Stashed changes
     "resolveJsonModule": true,
     "target": "ES2019",
     "strict": true,
     "baseUrl": ".",
-    "moduleResolution":"node",
     "paths": {
       "~/*": ["./app/*"]
     },

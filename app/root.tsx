@@ -12,11 +12,8 @@ import {
 import { NextUIProvider } from "@nextui-org/react";
 import stylesheet from "./tailwind.css";
 import type { ReactElement } from "react";
-<<<<<<< Updated upstream
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { authenticator } from "~/server/auth";
-=======
->>>>>>> Stashed changes
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref
@@ -25,10 +22,7 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App(): ReactElement {
-<<<<<<< Updated upstream
   const user = useLoaderData();
-=======
->>>>>>> Stashed changes
   return (
     <html lang="en">
       <head>
