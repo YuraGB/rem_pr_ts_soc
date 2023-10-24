@@ -31,14 +31,15 @@ export const meta: MetaFunction = () => {
 export default function Login(): ReactElement {
   const data = useLoaderData<typeof loader>();
   const dataAction = useActionData<typeof action>();
+  console.log(data, dataAction);
   return (
     <DefaultLayout>
       <article
         className={
-          "flex w-96 max-w-full  min-w-unit-6 bg-white drop-shadow-sm max-h-full content-center"
+          "flex w-96 max-w-full  min-w-unit-6 drop-shadow-sm max-h-full content-center m-auto"
         }
       >
-        <section className={"p-4 w-full flex flex-col"}>
+        <section className={"p-4 w-full flex flex-col bg-white"}>
           <h4 className={"mb-2"}>Login form</h4>
 
           <Form className={"flex flex-col"} method={"post"}>

@@ -1,31 +1,24 @@
-
+// @ts-ignore
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import compression from "compression";
 import morgan from "morgan";
+import {socketHandlers} from "./socketHandlers/onHandlers.js";
+
 
 const app = express();
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
-    transports: [
-        'polling',
-    ],
-    cors: {
-        origin: "http://localhost:3000",
-        credentials: true,
-    },
+  transports: ["polling"],
+  cors: {
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  },
 });
 
-io.on("connection", (socket) => {
-  console.log(socket.id, "connected");
-  socket.emit("event", "connected!");
-  socket.on("something", (data) => {
-    console.log(socket.id, data);
-    socket.emit("event", "pong");
-  });
-});
+io.on("connection", socketHandlers(io) );
 
 app.use(compression());
 

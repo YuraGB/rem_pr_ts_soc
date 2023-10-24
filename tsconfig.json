@@ -1,17 +1,27 @@
 {
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "node_modues"
+  ],
   "compilerOptions": {
+    "module": "ESNext", // or ES2015, ES2020
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "target": "ES2019",
+    "target": "esnext",
     "strict": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"]
+    },
+    "ts-node": {
+      "transpileOnly": true,
+      "extends": "@tsconfig/node16/tsconfig.json",
+      // Tell ts-node CLI to install the --loader automatically
+      "esm": true
     },
 
     // Remix takes care of building everything in `remix build`.

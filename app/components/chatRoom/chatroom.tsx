@@ -1,29 +1,28 @@
 import type { ReactElement } from "react";
-import { useContext, useEffect } from "react";
-import { wsContext } from "~/components/socetIo/socet.context";
+import HistoryContainer from "~/components/chatRoom/components/playground/historyContainer";
+import { useChatroom } from "~/components/chatRoom/useChatroom";
+import InputMessage from "~/components/chatRoom/components/input/inputMessage";
+import Toolbar from "~/components/chatRoom/components/toolbar/toolbar";
 
 export default function Chatroom(): ReactElement {
-  let socket = useContext(wsContext);
-  useEffect(() => {
-    if (!socket) return;
-
-    socket.on("event", (data: any) => {
-      console.log(data);
-    });
-
-    socket.emit("something", "ping");
-  }, [socket]);
+  const { chatHistory, onSend, users } = useChatroom();
   return (
-    <article
-      className={"bg-black bg-opacity-10 text-amber-50 p-2 content-center"}
-    >
-      <h4
-        onClick={() => {
-          socket?.emit("something", { name: "world" });
-        }}
+    <>
+      <article
+        className={
+          " grid-cols-[1fr_minmax(200px,_30%)] bg-black bg-opacity-10 text-amber-50 p-2 content-center w-full grid h-full overflow-hidden grid-rows-[1fr] grid-cols-[1fr minmax(100px, 30%)] gap-3"
+        }
       >
-        Chat room
-      </h4>
-    </article>
+        <div
+          className={
+            "bg-black bg-opacity-10 text-amber-50 p-2 content-center w-full grid h-full overflow-hidden grid-rows-[1fr] grid-cols-[1fr minmax(100px, 30%)] gap-3"
+          }
+        >
+          <HistoryContainer chatHistory={chatHistory} />
+          <InputMessage onSend={onSend} />
+        </div>
+        <Toolbar users={users} />
+      </article>
+    </>
   );
 }
