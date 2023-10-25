@@ -13,7 +13,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import stylesheet from "./tailwind.css";
 import type { ReactElement } from "react";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { authenticator } from "~/server/auth";
+import { authenticator } from "~/servises/auth";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref

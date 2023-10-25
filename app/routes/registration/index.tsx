@@ -8,7 +8,7 @@ import DefaultLayout from "~/hoc/layouts/default";
 import { Form, useActionData } from "@remix-run/react";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
-import { authenticator } from "~/server/auth";
+import { authenticator } from "~/servises/auth";
 import { actionHandler } from "~/routes/registration/actionHandler";
 
 export const meta: MetaFunction = () => {

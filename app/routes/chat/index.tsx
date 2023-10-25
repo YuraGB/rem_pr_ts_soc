@@ -4,7 +4,7 @@ import DefaultLayout from "~/hoc/layouts/default";
 import { useSocket } from "~/components/socetIo/useSocket";
 import { wsContext } from "~/components/socetIo/socet.context";
 import Chatroom from "~/components/chatRoom/chatroom";
-import { authenticator } from "~/server/auth";
+import { authenticator } from "~/servises/auth";
 import { redirect } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {

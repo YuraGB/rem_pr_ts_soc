@@ -1,11 +1,11 @@
 import type { ReactElement } from "react";
-import HistoryContainer from "~/components/chatRoom/components/playground/historyContainer";
+import HistoryContainer from "~/components/chatRoom/components/playground/historyContainer/historyContainer";
 import { useChatroom } from "~/components/chatRoom/useChatroom";
 import InputMessage from "~/components/chatRoom/components/input/inputMessage";
 import Toolbar from "~/components/chatRoom/components/toolbar/toolbar";
 
 export default function Chatroom(): ReactElement {
-  const { chatHistory, onSend, users } = useChatroom();
+  const { onSend } = useChatroom();
   return (
     <>
       <article
@@ -18,10 +18,10 @@ export default function Chatroom(): ReactElement {
             "bg-black bg-opacity-10 text-amber-50 p-2 content-center w-full grid h-full overflow-hidden grid-rows-[1fr] grid-cols-[1fr minmax(100px, 30%)] gap-3"
           }
         >
-          <HistoryContainer chatHistory={chatHistory} />
+          <HistoryContainer />
           <InputMessage onSend={onSend} />
         </div>
-        <Toolbar users={users} />
+        <Toolbar />
       </article>
     </>
   );

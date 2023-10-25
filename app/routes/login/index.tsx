@@ -1,6 +1,5 @@
 import type {
   ActionFunction,
-  LoaderFunction,
   LoaderFunctionArgs,
   MetaFunction,
 } from "@remix-run/node";
@@ -8,18 +7,11 @@ import type { ReactElement } from "react";
 import DefaultLayout from "~/hoc/layouts/default";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
-import {
-  Form,
-  isRouteErrorResponse,
-  Link,
-  useActionData,
-  useLoaderData,
-  useRouteError,
-} from "@remix-run/react";
-import { authenticator } from "~/server/auth";
+import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
+import { authenticator } from "~/servises/auth";
 import { loginActionHndler } from "~/routes/login/actionHandler";
 import { json, redirect } from "@remix-run/node";
-import { sessionStorage } from "~/server/session";
+import { sessionStorage } from "~/servises/session";
 
 export const meta: MetaFunction = () => {
   return [

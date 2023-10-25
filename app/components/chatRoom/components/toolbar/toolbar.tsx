@@ -1,8 +1,9 @@
 import type { ReactElement } from "react";
 import React from "react";
-import { ChatUsers } from "~/components/chatRoom/useChatroom";
+import { useToolbar } from "~/components/chatRoom/components/toolbar/useToolbar";
 
-const Toolbar = ({ users }: { users: ChatUsers[] }): ReactElement | null => {
+const Toolbar = (): ReactElement | null => {
+  const { users } = useToolbar();
   if (!users) {
     return null;
   }

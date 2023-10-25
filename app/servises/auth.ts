@@ -1,10 +1,10 @@
-// app/services/auth.server.ts
+// app/servises/auth.servises.ts
 import { Authenticator, AuthorizationError } from "remix-auth";
 import { sessionStorage } from "./session";
 import type { User } from ".prisma/client";
 import * as process from "process";
 import { FormStrategy } from "remix-auth-form";
-import { prisma } from "~/server/prisma";
+import { prisma } from "~/servises/prisma";
 import bcrypt from "bcryptjs";
 const sessionSecret = process.env.SESSION_SECRET;
 
@@ -35,7 +35,7 @@ const formStrategy = new FormStrategy(async ({ form }) => {
   }
 
   if (!user) {
-    console.log("there is no user with such email", "auth server");
+    console.log("there is no user with such email", "auth servises");
     throw new AuthorizationError("there is no user with such email");
   }
 

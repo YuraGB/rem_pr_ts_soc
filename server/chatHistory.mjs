@@ -1,7 +1,7 @@
 const chatHistory = [];
 export const LIMIT = 50;
 
-const addMessage = (user, message) => {
+const addMessage = (user, message,  email) => {
   const isMax = chatHistory.length === LIMIT;
 
   if (isMax) {
@@ -12,6 +12,8 @@ const addMessage = (user, message) => {
     user,
     message,
     createdAt: new Date().toDateString(),
+    id: Date.now(),
+    email
   });
 };
 

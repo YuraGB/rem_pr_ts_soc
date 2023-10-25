@@ -1,6 +1,6 @@
 import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
-import { authenticator } from "~/server/auth";
-import { saveNewUser } from "~/server/user";
+import { authenticator } from "~/servises/auth";
+import { saveNewUser } from "~/servises/user";
 
 export const actionHandler: ActionFunction = async ({ request }) => {
   const form = await request.formData();

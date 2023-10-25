@@ -1,5 +1,5 @@
-import { ActionFunction } from "@remix-run/node";
-import { authenticator } from "~/server/auth";
+import type { ActionFunction } from "@remix-run/node";
+import { authenticator } from "~/servises/auth";
 
 export const loginActionHndler: ActionFunction = async ({ request }) => {
   return await authenticator.authenticate("form", request, {

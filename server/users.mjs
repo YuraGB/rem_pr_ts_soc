@@ -1,3 +1,5 @@
+import {chatHistory} from "./chatHistory.mjs";
+
 const users = [];
 
 const addUser = ({ id, name, room }) => {
@@ -16,6 +18,11 @@ const addUser = ({ id, name, room }) => {
   return { user };
 };
 
+const updateHistoryWithCurrentUser = (history, email) => history.map((el) => ({
+  ...el,
+  isCurrent: el.email === email,
+}))
+
 const removeUser = (id) => {
   const index = users.findIndex((user) => user.id === id);
 
@@ -29,4 +36,4 @@ const getUser = (id) => users.find((user) => user.id === id);
 const getUsersInRoom = (room) =>
   users.filter((user) => user.room === room);
 
-export { addUser, removeUser, getUser, getUsersInRoom };
+export { addUser, removeUser, getUser, getUsersInRoom, updateHistoryWithCurrentUser };
