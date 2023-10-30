@@ -9,7 +9,7 @@ export const socketHandlers = (io) => (socket) => {
 
   socket.on("join", ({ name, room, email }, callback = () => {}) => {
     const { error, user } = addUser({ id: socket.id, name, room });
-
+    console.log(error);
     if (error || !user) return callback(error);
 
     socket.emit(

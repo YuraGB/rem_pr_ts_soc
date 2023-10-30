@@ -1,0 +1,11 @@
+Model Information:
+* title:	Emoji heart message
+* source:	https://sketchfab.com/3d-models/emoji-heart-message-4bc8a62a1a1942b3a9ad74e60cf575d5
+* author:	i.deal3d (https://sketchfab.com/i.deal3d)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Emoji heart message" (https://sketchfab.com/3d-models/emoji-heart-message-4bc8a62a1a1942b3a9ad74e60cf575d5) by i.deal3d (https://sketchfab.com/i.deal3d) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -261,30 +261,30 @@ console.log(
 //   const result = findNext(arr, arr.length);
 //   return isNaN(result) ? -1 : result;
 // }
-
-const sortedDigits = (n) => {
-  let arr = n.toString().split("");
-  arr.sort((a, b) => b - a);
-  return arr;
-};
-
-function nextBigger(n) {
-  let arr = sortedDigits(n);
-  let max = parseInt(arr.join(""), 10);
-
-  for (var i = n + 1; i <= max; i++) {
-    console.log(
-      i,
-      JSON.stringify(sortedDigits(i)) === JSON.stringify(arr),
-      arr
-    );
-    if (sortedDigits(i).every((x, j) => x === arr[j])) {
-      return i;
-    }
-  }
-
-  return -1;
-}
+//
+// const sortedDigits = (n) => {
+//   let arr = n.toString().split("");
+//   arr.sort((a, b) => b - a);
+//   return arr;
+// };
+//
+// function nextBigger(n) {
+//   let arr = sortedDigits(n);
+//   let max = parseInt(arr.join(""), 10);
+//
+//   for (var i = n + 1; i <= max; i++) {
+//     console.log(
+//       i,
+//       JSON.stringify(sortedDigits(i)) === JSON.stringify(arr),
+//       arr
+//     );
+//     if (sortedDigits(i).every((x, j) => x === arr[j])) {
+//       return i;
+//     }
+//   }
+//
+//   return -1;
+// }
 
 // console.log(nextBigger(12));
 // console.log(nextBigger(513));
@@ -294,7 +294,115 @@ function nextBigger(n) {
 // console.log(nextBigger(531));
 // console.log(nextBigger(9));
 // console.log(nextBigger(111));
-console.log(nextBigger(1234567980), 1234567908);
-console.log(nextBigger(111));
-console.log(nextBigger(111));
-console.log(nextBigger(111));
+// console.log(nextBigger(1234567980), 1234567908);
+// console.log(nextBigger(111));
+// console.log(nextBigger(111));
+// console.log(nextBigger(111));
+
+// function justify(text, width) {
+//   const transformInToArray = text
+//     .replace(/\n/g, "")
+//     .split(" ")
+//     .filter((e) => e);
+//   const result = [];
+//
+//   // acc -> one row  only words
+//   transformInToArray.reduce((acc, curr, i, origin) => {
+//     if (origin.length === 1) {
+//       result.push([curr]);
+//       return;
+//     }
+//
+//     if (i === 0) {
+//       acc.push(curr);
+//
+//       return acc;
+//     }
+//
+//     // width of words length in one row already added
+//     const sumAccLenth = acc.join("").length;
+//
+//     // minimum one space between
+//     const accItems = acc.length;
+//
+//     const calculation = sumAccLenth + curr.length;
+//     if (calculation + accItems - 1 >= width) {
+//       result.push(acc);
+//
+//       if (i === origin.length - 1) {
+//         result.push([curr]);
+//       }
+//
+//       return [curr];
+//     } else {
+//       acc.push(curr);
+//     }
+//
+//     if (i === origin.length - 1) {
+//       result.push(acc);
+//     }
+//
+//     return acc;
+//   }, []);
+//
+//   return result
+//     .map((el, i) => {
+//       if (i === result.length - 1) {
+//         return el.join(" ");
+//       }
+//       const rowWordsLength = el.join("").length;
+//       const rowLength = el.length > 1 ? el.length - 1 : el.length;
+//       const spacesAmount = width - rowWordsLength;
+//       const spacesBetween = Math.ceil(spacesAmount / rowLength);
+//       const spaces = Array(spacesBetween).fill(" ").join("");
+//       let row = el.join(spaces);
+//
+//       console.log(row, rowWordsLength, rowLength, row.length);
+//       while (row.length > width) {
+//         const index = row.lastIndexOf(spaces);
+//         row = row.substring(0, index) + row.substring(index + 1);
+//       }
+//
+//       return row + "\n";
+//     })
+//     .join("");
+// }
+
+//console.log(justify("123 45 6", 7));
+// justify("", 10);
+// justify("12 45 1234 12", 6);
+// justify("123", 7);
+//
+// console.log(
+//   justify(
+//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sagittis dolor mauris, at elementum ligula tempor eget. In quis rhoncus nunc, at aliquet orci. Fusce at dolor sit amet felis suscipit tristique. Nam a imperdiet tellus. Nulla eu vestibulum urna. Vivamus tincidunt suscipit enim, nec ultrices nisi volutpat ac. Maecenas sit amet lacinia arcu, non dictum justo. Donec sed quam vel risus faucibus euismod. Suspendisse rhoncus rhoncus felis at fermentum. Donec lorem magna, ultricies a nunc sit amet, blandit fringilla nunc. In vestibulum velit ac felis rhoncus pellentesque. Mauris at tellus enim. Aliquam eleifend tempus dapibus. Pellentesque commodo, nisi sit amet hendrerit fringilla, ante odio porta lacus, ut elementum justo nulla et dolor.",
+//     30
+//   )
+// );
+// expected
+// 'Lorem  ipsum  dolor  sit amet,\nconsectetur  adipiscing  elit.\nVestibulum    sagittis   dolor\nmauris,  at  elementum  ligula\ntempor  eget.  In quis rhoncus\nnunc,  at  aliquet orci. Fusce\nat   dolor   sit   amet  felis\nsuscipit   tristique.   Nam  a\nimperdiet  tellus.  Nulla  eu\nvestibulum    urna.    Vivamus\ntincidunt  suscipit  enim, nec\nultrices  nisi  volutpat  ac.\nMaecenas   sit   amet  lacinia\narcu, non dictum justo. Donec\nsed  quam  vel  risus faucibus\neuismod.  Suspendisse  rhoncus\nrhoncus  felis  at  fermentum.\nDonec lorem magna, ultricies a\nnunc    sit    amet,   blandit\nfringilla nunc. In vestibulum\nvelit    ac    felis   rhoncus\npellentesque. Mauris at tellus\nenim. Aliquam eleifend tempus\ndapibus. Pellentesque commodo,\nnisi   sit   amet   hendrerit\nfringilla,  ante  odio  porta\nlacus,   ut   elementum  justo\nnulla et dolor.'
+// 'Lorem  ipsum  dolor  sit amet,\nconsectetur  adipiscing  elit.\nVestibulum    sagittis   dolor\nmauris,  at  elementum  ligula\ntempor  eget.  In quis rhoncus\nnunc,  at  aliquet orci. Fusce\nat   dolor   sit   amet  felis\nsuscipit   tristique.   Nam  a\nimperdiet   tellus.  Nulla  eu\nvestibulum    urna.    Vivamus\ntincidunt  suscipit  enim, nec\nultrices   nisi  volutpat  ac.\nMaecenas   sit   amet  lacinia\narcu,  non dictum justo. Donec\nsed  quam  vel  risus faucibus\neuismod.  Suspendisse  rhoncus\nrhoncus  felis  at  fermentum.\nDonec lorem magna, ultricies a\nnunc    sit    amet,   blandit\nfringilla  nunc. In vestibulum\nvelit    ac    felis   rhoncus\npellentesque. Mauris at tellus\nenim.  Aliquam eleifend tempus\ndapibus. Pellentesque commodo,\nnisi    sit   amet   hendrerit\nfringilla,   ante  odio  porta\nlacus,   ut   elementum  justo\nnulla et dolor.'
+
+const getLowest = (number) =>
+  number
+    .toString()
+    .split("")
+    .sort((a, b) => a - b);
+
+function nextSmaller(n) {
+  const theLowest = Number(getLowest(n).join(""));
+  const theLowestToJson = JSON.stringify(getLowest(n));
+
+  for (let i = n - 1; i >= theLowest; i--) {
+    const variantToJson = JSON.stringify(getLowest(i));
+
+    if (variantToJson === theLowestToJson) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+console.log(nextSmaller(59884848459853), 123456789);
+
+debugger;

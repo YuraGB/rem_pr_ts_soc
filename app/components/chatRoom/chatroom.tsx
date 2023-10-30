@@ -3,9 +3,11 @@ import HistoryContainer from "~/components/chatRoom/components/playground/histor
 import { useChatroom } from "~/components/chatRoom/useChatroom";
 import InputMessage from "~/components/chatRoom/components/input/inputMessage";
 import Toolbar from "~/components/chatRoom/components/toolbar/toolbar";
+import ErrorConnection from "~/components/chatRoom/components/errorConnection/ErrorConnection";
 
 export default function Chatroom(): ReactElement {
-  const { onSend } = useChatroom();
+  const { onSend, isConnectedError } = useChatroom();
+  console.log(isConnectedError, "10");
   return (
     <>
       <article
@@ -13,15 +15,21 @@ export default function Chatroom(): ReactElement {
           " grid-cols-[1fr_minmax(200px,_30%)] bg-black bg-opacity-10 text-amber-50 p-2 content-center w-full grid h-full overflow-hidden grid-rows-[1fr] grid-cols-[1fr minmax(100px, 30%)] gap-3"
         }
       >
-        <div
-          className={
-            "bg-black bg-opacity-10 text-amber-50 p-2 content-center w-full grid h-full overflow-hidden grid-rows-[1fr] grid-cols-[1fr minmax(100px, 30%)] gap-3"
-          }
-        >
-          <HistoryContainer />
-          <InputMessage onSend={onSend} />
-        </div>
-        <Toolbar />
+        {isConnectedError ? (
+          <ErrorConnection />
+        ) : (
+          <>
+            <div
+              className={
+                "bg-black bg-opacity-10 text-amber-50 p-2 content-center w-full grid h-full overflow-hidden grid-rows-[1fr] grid-cols-[1fr minmax(100px, 30%)] gap-3"
+              }
+            >
+              <HistoryContainer />
+              <InputMessage onSend={onSend} />
+            </div>
+            <Toolbar />
+          </>
+        )}
       </article>
     </>
   );

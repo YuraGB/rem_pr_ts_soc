@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import DefaultLayout from "~/hoc/layouts/default";
 import type { ReactElement } from "react";
+import { HomePage } from "~/components/homePageComponent/HomePage";
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,7 +13,7 @@ export const meta: MetaFunction = () => {
 export default function Index(): ReactElement {
   return (
     <DefaultLayout>
-      <h1>Home</h1>
+      <HomePage />
     </DefaultLayout>
   );
 }

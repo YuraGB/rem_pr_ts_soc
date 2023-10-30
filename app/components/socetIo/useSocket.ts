@@ -5,13 +5,12 @@ import { connect } from "~/components/socetIo/ws.client";
 import type { DefaultEventsMap } from "socket.io/dist/typed-events";
 
 export const useSocket = () => {
-  let [socket, setSocket] =
+  const [socket, setSocket] =
     useState<Socket<DefaultEventsMap, DefaultEventsMap>>();
 
   useEffect(() => {
     let connection = connect();
     setSocket(connection);
-
     return () => {
       connection.close();
     };
