@@ -5,7 +5,7 @@ import type {
 } from "@remix-run/node";
 import type { ReactElement } from "react";
 import DefaultLayout from "~/hoc/layouts/default";
-import { Form, useActionData } from "@remix-run/react";
+import { Form } from "@remix-run/react";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 import { authenticator } from "~/servises/auth";
@@ -19,15 +19,12 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Registration(): ReactElement {
-  const actionData = useActionData();
-
   return (
     <>
-      {/* @ts-expect-error Server Component */}
       <DefaultLayout>
         <article
           className={
-            "flex w-96 max-w-full  min-w-unit-6 bg-white drop-shadow-sm max-h-full content-center"
+            "flex w-96 max-w-full  min-w-unit-6 drop-shadow-sm max-h-full content-center m-auto"
           }
         >
           <section className={"p-4 w-full flex flex-col"}>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Smile Icon Message
+* source:	https://sketchfab.com/3d-models/smile-icon-message-72d989305cd947a9977963cff30ab4ed
+* author:	i.deal3d (https://sketchfab.com/i.deal3d)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Smile Icon Message" (https://sketchfab.com/3d-models/smile-icon-message-72d989305cd947a9977963cff30ab4ed) by i.deal3d (https://sketchfab.com/i.deal3d) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

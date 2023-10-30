@@ -7,11 +7,12 @@ import type { ReactElement } from "react";
 import DefaultLayout from "~/hoc/layouts/default";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
-import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import { authenticator } from "~/servises/auth";
 import { loginActionHndler } from "~/routes/login/actionHandler";
 import { json, redirect } from "@remix-run/node";
 import { sessionStorage } from "~/servises/session";
+import { useLogin } from "~/routes/login/useLogin";
 
 export const meta: MetaFunction = () => {
   return [
@@ -21,9 +22,7 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Login(): ReactElement {
-  const data = useLoaderData<typeof loader>();
-  const dataAction = useActionData<typeof action>();
-  console.log(data, dataAction);
+  const { errors } = useLogin();
   return (
     <DefaultLayout>
       <article
@@ -33,7 +32,13 @@ export default function Login(): ReactElement {
       >
         <section className={"p-4 w-full flex flex-col bg-white"}>
           <h4 className={"mb-2"}>Login form</h4>
-
+          {errors?.length
+            ? errors.map((er, ind) => (
+                <p key={er + ind} className={"text-red-700 mb-2"}>
+                  {er}
+                </p>
+              ))
+            : null}
           <Form className={"flex flex-col"} method={"post"}>
             <Input
               isRequired
