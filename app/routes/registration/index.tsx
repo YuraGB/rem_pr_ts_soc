@@ -5,7 +5,7 @@ import type {
 } from "@remix-run/node";
 import type { ReactElement } from "react";
 import DefaultLayout from "~/hoc/layouts/default";
-import { Form, useActionData } from "@remix-run/react";
+import { Form } from "@remix-run/react";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 import { authenticator } from "~/servises/auth";
@@ -19,8 +19,6 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Registration(): ReactElement {
-  const actionData = useActionData();
-
   return (
     <>
       <DefaultLayout>
